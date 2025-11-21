@@ -13,7 +13,7 @@ using namespace std;
  void FreeCoins();
  bool CheckPass();
  void SaleCoins(); 
-//  void BankAccount();
+void BankAccount();
 
 
  
@@ -37,7 +37,7 @@ int choice;
    cout<<"2. Spend coins\n";
    cout<<"3. Check coins\n";
    cout<<"4. Free coins\n";
-   cout<<"5.login bank account\n";
+   cout<<"5. Login bank account\n";
    cout<<"6. Exit\n";
    cout << "Enter your choice: ";
 
@@ -56,7 +56,7 @@ int choice;
 
         case 3: CheckCoins();  break;
         case 4: FreeCoins();  break;
-        case 5: cout<<"comming soon \n ";;  break;
+        case 5: BankAccount();  break;
 
 
         case 6: cout<<"Exiting...."; break;
@@ -191,6 +191,11 @@ void CheckCoins(){
  }
 
 
-//  BankAccount(){
-// cout<<"Welcome To The WAKA Bank \n";
-//  }
+void BankAccount(){
+ if(!CheckPass()){
+      cout <<"Incorrect password returning to menu... \n";
+     return;
+
+    }
+ 
+}
