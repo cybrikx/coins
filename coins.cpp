@@ -197,5 +197,9 @@ void BankAccount(){
      return;
 
     }
- 
+    cout<<"-------------------------\n";
+    cout<<".     Bank Account Login \n ";
+    cout<<"Your belance is RM "<< B_RM <<"\n";
+    cout<<"-------------------------\n";
+    return;
 }
