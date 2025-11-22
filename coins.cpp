@@ -17,6 +17,10 @@ bool hasAccount = false;
  void CreateAccount();
  bool loginbank();
  void DepositBnk();
+ //coming soon
+void WithdrawalBnk();
+void ConvertToCoins();
+void CoinsToBank();  
 
  
  int main(){
@@ -86,14 +90,14 @@ void BuyCoins(){
    cout<<"-------------------------\n";
   cout<<".     Coins Shop \n ";
   cout<<"-------------------------\n";
-  cout<<"1 coins = RM 1.00 \n Enter How many Coins you wanna buy > ";
+  cout<<"2 coins = RM 1.00 \n Enter How many Coins you wanna buy > ";
   cin>>Getcoins;
  
-  cout<<"Are you sure wanna buy " << Getcoins << " coins for RM " << Getcoins << ". \n Enter y or n \n > ";
+  cout<<"Are you sure wanna buy " << Getcoins * 2 << " coins for RM " << Getcoins << ". \n Enter y or n \n > ";
   cin>>yn;
 
   if(yn == "Y" || yn == "y"){
-    coins += Getcoins;
+    coins += Getcoins *2 ;
     cout<<"Thank You,You will recieve your coins shortly\n";
   }else if(yn == "N" && yn == "n"){
     cout<<"Returning to main menu.... \n";
@@ -225,8 +229,8 @@ do {
       switch(C){
         case 1: cout<<"Your belance is " << B_RM <<endl; break;
         case 2: DepositBnk(); break;
-        case 3: 
-        case 4: 
+        case 3: WithdrawalBnk(); break;
+        case 4: ConvertToCoins();break;
         case 5: 
         case 6: cout<<"Exiting to main manu"; break;
       }
@@ -270,5 +274,40 @@ void DepositBnk(){
   cout<<"\nEnter Amount you want to deposit: ";
   cin>>money;
   B_RM += money;
+  return;
  
 } 
+
+void WithdrawalBnk(){
+  double money;
+  cout<<"\nEnter Amount you want withdraw: ";
+  cin>>money;
+  if (money > B_RM){
+    cout<<"error:  sorry you dont have enough credit.";
+  }else{
+  B_RM -= money;
+  cout<<"\nwithdrawal successful, RM: "<< money <<"  has been deducted from Your account\n ";
+  }
+}
+
+void ConvertToCoins(){
+  int gone = 0;
+  double total = 0.00;
+  cout<< "You have "<< coins <<" coins\n";
+  cout<< "And Your bank belance is RM "<< B_RM <<"\n\n";
+
+  cout<<"price: 2 coins = RM 1:00\nEnter The amount of coins you want \n > ";
+  cin>>gone;
+ total = gone / 2.00;
+ cout<<"TEST:  "<< total<<" \n";
+  if (total > B_RM || B_RM == 0){
+    cout<<"error:  sorry you dont have enough credit.";
+  }else{
+    B_RM -= total;
+    coins += gone;
+    cout<<"successful converted RM "<<total<<" into "<< gone<< "coins\n";
+  }
+  
+
+
+}
