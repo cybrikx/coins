@@ -4,7 +4,7 @@
 using namespace std;
  int coins = 0;
  double B_RM = 0.00;
-
+bool hasAccount = false;
  string users, pass, b_user, B_pass;
 
  void BuyCoins();
@@ -13,8 +13,10 @@ using namespace std;
  void FreeCoins();
  bool CheckPass();
  void SaleCoins(); 
-void BankAccount();
-
+ void BankAccount();
+ void CreateAccount();
+ bool loginbank();
+ void DepositBnk();
 
  
  int main(){
@@ -66,7 +68,7 @@ int choice;
           break;
         }
 
- } while (choice != 5);
+ } while (choice != 6);
  
   return 0;
 
@@ -126,7 +128,9 @@ void CheckCoins(){
     }
    int choice;
    do{
+     cout<<"-------------------------\n";
     cout<<"\nOnline shop (wakaka) \n";
+     cout<<"-------------------------\n";
     cout<<"1. 12 coins: GTA 5 Game \n";
     cout<<"2. 19 coins: Mouse      \n";
     cout<<"3. 29 coins: keybord    \n";
@@ -192,14 +196,79 @@ void CheckCoins(){
 
 
 void BankAccount(){
- if(!CheckPass()){
-      cout <<"Incorrect password returning to menu... \n";
-     return;
-
-    }
-    cout<<"-------------------------\n";
-    cout<<".     Bank Account Login \n ";
-    cout<<"Your belance is RM "<< B_RM <<"\n";
-    cout<<"-------------------------\n";
+ if(!hasAccount){
+    CreateAccount();
     return;
+ }else if ((!loginbank())){
+  cout<<"wrong Username or password. \n Returning to main manu \n";
+   return;
+ }
+ int C;
+do {
+  cout<<"\n\n\n-------------------------\n";
+  cout<<"     Bank System \n";
+  cout<<"-------------------------\n";
+  cout<<"1.Check belance  \n";
+  cout<<"2.Deposit   \n";
+  cout<<"3.Withdrawal   \n";
+  cout<<"4.Convert to coins   \n";
+  cout<<"5.Coins to Bank   \n";
+  cout<<"6.Exit   \n";
+
+  while (!(cin >> C)) {
+            cout << "Invalid input! Please enter a number from 1 to 6.\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Enter your choice: ";
+        }
+
+      switch(C){
+        case 1: cout<<"Your belance is " << B_RM <<endl; break;
+        case 2: DepositBnk(); break;
+        case 3: 
+        case 4: 
+        case 5: 
+        case 6: cout<<"Exiting to main manu"; break;
+      }
+  
+}while(C != 6);
+
+
 }
+
+void CreateAccount(){
+  cout<<"\n\n\n-------------------------\n";
+  cout<<"     Create Bank Account \n";
+  cout<<"-------------------------\n";
+  cout<<"Enter Bank Username: ";
+  cin>>b_user;
+  cout<<"Enter Bank Password: ";
+  cin>>B_pass;
+  cout<<"Account Created Successfully \n";
+  hasAccount = true;
+
+}
+bool loginbank(){
+  string Bu, Bp;
+  cout<<"\n\n\n-------------------------\n";
+  cout<<"     Login Bank Account \n";
+  cout<<"-------------------------\n";
+  cout<<"Enter bank Username: ";
+  cin>>Bu;
+  cout<<"Enter bank Password: ";
+  cin>>Bp;
+
+  if(Bu == b_user && Bp == B_pass ){
+    return true;
+  }else {
+    return false;
+  }
+}
+
+void DepositBnk(){
+  double money;
+  cout<<"\nEnter Amount you want to deposit: ";
+  cin>>money;
+  B_RM += money;
+ 
+} 
