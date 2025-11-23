@@ -231,7 +231,7 @@ do {
         case 2: DepositBnk(); break;
         case 3: WithdrawalBnk(); break;
         case 4: ConvertToCoins();break;
-        case 5: 
+        case 5: CoinsToBank(); break;
         case 6: cout<<"Exiting to main manu"; break;
       }
   
@@ -308,6 +308,37 @@ void ConvertToCoins(){
     cout<<"successful converted RM "<<total<<" into "<< gone<< "coins\n";
   }
   
+
+
+}
+
+void CoinsToBank(){
+double money = 0.0;
+int total = 0;
+string a;
+
+cout<< "You have "<< coins <<" coins\n";
+cout<< "And Your bank belance is RM "<< B_RM <<"\n\n";
+cout<<"price: RM 1:00 = 2 coins\nEnter how much you want \n >RM:  ";
+cin>>money;
+
+total = money * 2;
+
+if(total > coins || coins == 0){
+   cout<<"error:  sorry you dont have enough coins.";
+}else{
+  cout<<"Are you sure? You want to convert " << total << " coins into RM " << money <<" \n" ;
+  cout<<"Enter Y or N";
+  cin>>a;
+  if(a == "y"  || a == "Y"){
+    coins -= total;
+    B_RM += money;
+    cout<<"successful converted "<< total << " coins into RM " << money;
+  }else{
+    return;
+  }
+}
+
 
 
 }
